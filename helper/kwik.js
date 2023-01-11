@@ -5,7 +5,7 @@ import axios from 'axios';
 export const extractSource = async (kwikUrl) => {
     const { data } = await axios.get(kwikUrl, {
         headers: {
-            referer: "https://animepahe.com/"
+            referer: "https://animepahe.ru/"
         }
     });
     const x = data.match(/p\}.*kwik.*/g)
