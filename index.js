@@ -18,6 +18,7 @@ import crunchyrollRoutes from './Routes/Crunchyroll.js';
 import nineanimeRoutes from './Routes/NineAnime.js';
 import allanimeRoutes from './Routes/Allanime.js';
 import animepaheRoutes from './Routes/Animepahe.js';
+import yugenRoutes from './Routes/Yugen.js';
 
 app.use('/gogoanime', gogoRoutes);
 app.use('/animix', animixRoutes);
@@ -25,7 +26,8 @@ app.use('/zoro', zoroRoutes);
 app.use('/crunchyroll', crunchyrollRoutes);
 app.use(['/9anime', '/nineanime'], nineanimeRoutes);
 app.use('/allanime', allanimeRoutes);
-app.use('/animepahe', animepaheRoutes)
+app.use('/animepahe', animepaheRoutes);
+app.use('/yugen', yugenRoutes);
 
 // Routes
 app.get('/', (req, res) => {

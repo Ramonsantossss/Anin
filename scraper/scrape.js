@@ -52,6 +52,12 @@ export {
     fetchAnimepaheInfo
 } from './animepahe/animepahe.js';
 
+export {
+    fetchSearchYugen,
+    fetchYugenAnimeInfo,
+    fetchYugenEpisodeSource
+} from './yugen/yugen.js';
+
 // GLOBAL ROUTES
 export const fetchSchedule = async () => {
     try {
