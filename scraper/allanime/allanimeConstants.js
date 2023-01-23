@@ -52,7 +52,7 @@ const animeInfoParams = (id) => {
         extensions: {
             persistedQuery: {
                 version: 1,
-                sha256Hash: "afcdaedfd46f36448916b5f7db84d2bdbb72fded428ad8755179a03845c57b96"
+                sha256Hash: "f73a8347df0e3e794f8955a18de6e85ac25dfc6b74af8ad613edf87bb446a854"
             }
         }
     }
@@ -84,7 +84,7 @@ const sourceParams = (id, epNum) => {
         extensions: {
             persistedQuery: {
                 version: 1,
-                sha256Hash: "3933a4a68bc80c46e25b7b8b3f563df1416b7b583595e5e5bfc67c01bd791df8"
+                sha256Hash: "bfda9b479f7a4810bfeb9e3c8d462c6d09a33f918328b0688eb370e1778f272f"
             }
         }
     }

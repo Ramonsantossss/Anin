@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const allanimeBase = 'https://allanime.site/';
 const allanimeApi = allanimeBase + 'allanimeapi';
-const allanimeSourceUrl = 'https://blog.allanimenews.com';
+const allanimeSourceUrl = 'https://anime.allanimenews.com';
 
 import {
     recentEpisodeParams,
@@ -121,6 +121,7 @@ export const fetchAllanimeInfo = async ({ animeId, list = {} }) => {
 
 
     } catch (error) {
+        console.log(error)
         return {
             error: true,
             error_message: error
