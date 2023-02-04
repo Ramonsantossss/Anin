@@ -8,6 +8,13 @@ import {
     fetchGogoanimeEpisodeSource
 } from "../scraper/scrape.js";
 
+router.get('/', (req, res) => {
+    res.send({
+        routes: ['/recent-episodes', '/search?keyw={keyword}', '/info/:animeId', '/watch/:episodeId'],
+        website: 'https://gogoanime.fi'
+    })
+})
+
 router.get('/search', async (req, res) => {
     const keyw = req.query.keyw;
     const page = req.query.page;

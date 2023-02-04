@@ -28,18 +28,6 @@ export {
 } from './zoro/zoro.js';
 
 export {
-    fetchSearchCrunchyroll,
-    fetchCrunchyrollEpisodes,
-    fetchCrunchyrollSources
-} from './crunchyroll/crunchyroll.js';
-
-export {
-    fetchSearch9anime,
-    fetch9animeAnimeInfo,
-    fetch9animeEpisodeSources
-} from './9anime/9anime.js';
-
-export {
     fetchAllanimeRecentEpisodes,
     fetchSearchAllanime,
     fetchAllanimeInfo,

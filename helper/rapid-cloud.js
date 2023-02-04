@@ -19,13 +19,11 @@ export const scrapeSource = async (serverId) => {
     });
 
     const sources = rapidAjax.data.sources;
-
-    let decryptKey = await axios.get("https://github.com/consumet/rapidclown/blob/main/key.txt");
+    let decryptKey = await axios.get("https://github.com/enimax-anime/key/blob/e6/key.txt");
 
     const $ = load(decryptKey.data);
 
     const source = CryptoJS.AES.decrypt(sources, $('#LC1').text()).toString(CryptoJS.enc.Utf8);
-    //"7wfQgUNrRXCkGdxqEBvr5S"
     return {
         sources: JSON.parse(source),
         tracks: rapidAjax.data.tracks

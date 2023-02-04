@@ -143,9 +143,7 @@ export const fetchAllanimeEpisodeSource = async ({ episodeId, episode = {} }) =>
             params: sourceParams(animeId, episodeNum),
             headers: headerAllanime
         });
-
-        const sourceApiLink = data.data.episode.sourceUrls.sort((a, b) => b.priority - a.priority)[0].sourceUrl;
-
+        const sourceApiLink = data.data.episode.sourceUrls.sort((a, b) => b.priority - a.priority)[1].sourceUrl;
         const sources = await axios.get(`${allanimeSourceUrl}${sourceApiLink.replace('clock', 'clock.json')}`);
 
         episode = {

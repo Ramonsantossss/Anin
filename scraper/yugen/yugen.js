@@ -12,7 +12,7 @@ export const fetchSearchYugen = async ({ keyw, list = [] }) => {
             error_message: "No keyword provided"
         };
 
-        const res = await axios.get(yugenBase + `discover?dq=${keyw}`);
+        const res = await axios.get(yugenBase + `discover?q=${keyw}`);
 
         const $ = load(res.data);
 

@@ -7,6 +7,14 @@ import {
     fetchZoroEpisodeSource
 } from "../scraper/scrape.js";
 
+router.get('/', (req, res) => {
+    res.send({
+        routes: ['/search?keyw={keyword}', '/info/:animeId', '/watch/:episodeId?type=1'],
+        note: "param \'type\' in watch route: type 1 for sub (default), 2 for dub",
+        website: 'https://zoro.to/'
+    })
+})
+
 router.get('/search', async (req, res) => {
     const keyw = req.query.keyw;
     const page = req.query.page;
