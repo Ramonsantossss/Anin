@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const allanimeBase = 'https://allanime.site/';
 const allanimeApi = allanimeBase + 'allanimeapi';
-const allanimeSourceUrl = 'https://anime.allanimenews.com';
+const allanimeSourceUrl = 'https://allanimenews.com';
 
 import {
     recentEpisodeParams,
