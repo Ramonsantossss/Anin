@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const allanimeBase = 'https://allanime.site/';
+const allanimeBase = 'https://allanime.to/';
 const allanimeApi = allanimeBase + 'allanimeapi';
 const allanimeSourceUrl = 'https://allanimenews.com';
 
@@ -143,7 +143,9 @@ export const fetchAllanimeEpisodeSource = async ({ episodeId, episode = {} }) =>
             params: sourceParams(animeId, episodeNum),
             headers: headerAllanime
         });
-        const sourceApiLink = data.data.episode.sourceUrls.sort((a, b) => b.priority - a.priority)[1].sourceUrl;
+
+        console.log(data.data.episode.sourceUrls)
+        const sourceApiLink = data.data.episode.sourceUrls.sort((a, b) => b.priority - a.priority)[0].sourceUrl;
         const sources = await axios.get(`${allanimeSourceUrl}${sourceApiLink.replace('clock', 'clock.json')}`);
 
         episode = {

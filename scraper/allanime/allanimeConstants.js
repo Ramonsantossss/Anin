@@ -91,7 +91,7 @@ const sourceParams = (id, epNum) => {
 }
 
 const headerAllanime = {
-    "Host": "allanime.site",
+    "Host": "allanime.to",
     "User-Agent": USER_AGENT
 };
 
