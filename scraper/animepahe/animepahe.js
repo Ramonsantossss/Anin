@@ -4,7 +4,8 @@ import { load } from 'cheerio';
 const animepaheBase = `https://animepahe.ru`;
 const animepaheApi = `https://animepahe.ru/api`;
 const USER_AGENT = `Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36`;
-import { extractSource } from '../../helper/kwik.js';
+import { paheExtractor } from '../../helper/paheExtract.js';
+const quality = /....p/
 
 
 export const fetchSearchAnimepahe = async ({ keyw, list = [] }) => {
@@ -107,38 +108,28 @@ export const fetchAnimepaheInfo = async ({ animeId, page = 1, list = {} }) => {
     }
 };
 
-export const fetchAnimepaheEpisodeSource = async ({ episodeId, list = [] }) => {
+export const fetchAnimepaheEpisodeSource = async ({ animeId, episodeId, list = [] }) => {
     try {
-        if (!episodeId) return {
+        if (!episodeId || !animeId) return {
             error: true,
-            error_message: "No episodeId provided"
+            error_message: "No animeId/episodeId provided. Check /animepahe for all routes"
         };
 
-        const { data } = await axios.get(animepaheApi, {
-            params: {
-                m: "links",
-                id: episodeId
-            }
-        });
-
-
-        await Promise.all(data.data.map(async (source) => {
-            const key = Object.keys(source)[0]
-            const sourceUrl = await extractSource(source[key].kwik);
-
+        const { data } = await axios.get(`${animepaheBase}/play/${animeId}/${episodeId}`);
+        const $ = load(data)
+        await Promise.all($('div#pickDownload > a').map(async (i, el) => {
             list.push({
-                quality: key,
-                audioLanguage: source[key].audio,
-                file: sourceUrl
+                quality: quality.exec($(el).text())[0].trim(),
+                sourceUrl: await paheExtractor($(el).attr('href'))
             })
         }))
 
         return {
             referer: 'https://kwik.cx/',
-            sources: list.sort((a, b) => b.audioLanguage.localeCompare(a.audioLanguage))
+            sources: list
         };
     } catch (error) {
-        // console.log(error)
+        console.log(error)
         return {
             error: true,
             error_message: error

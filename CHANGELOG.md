@@ -1,15 +1,12 @@
 # Changelog
 
-## v2.2.0
+## v2.2.1
 
 ### Added or Changed
-- Rapidcloud extractor fix
-- Allanime watch route fix
-- Yugen search route fix
-- minor additions in route pages
+- Animepahe extraction fixed
+- Animepahe now returns mp4 source links which do not require referer headers
+- Code refactor and cleanup soon
 
 ### Removed
 
-- 9anime provider
-- crunchyroll provider
-- filemoon extractor
+- kwik extractor has been archived for now
