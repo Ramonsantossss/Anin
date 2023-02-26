@@ -46,6 +46,12 @@ export {
     fetchYugenEpisodeSource
 } from './yugen/yugen.js';
 
+export {
+    fetchSearch9anime,
+    fetch9animeInfo,
+    fetch9animeEpisodeSource
+} from './nineanime/9anime.js';
+
 // GLOBAL ROUTES
 export const fetchSchedule = async () => {
     try {
