@@ -1,7 +1,12 @@
 # Changelog
 
-## v2.3.0
+## v2.2.1
 
 ### Added or Changed
-- 9anime provider (readded)
-- Filemoon extractor (readded)
+- Animepahe extraction fixed
+- Animepahe now returns mp4 source links which do not require referer headers
+- Code refactor and cleanup soon
+
+### Removed
+
+- kwik extractor has been archived for now
