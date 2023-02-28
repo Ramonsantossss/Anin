@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { load } from 'cheerio';
 
-const yugenBase = `https://yugen.to/`;
+const yugenBase = `https://yugenanime.ro/`;
 
 import { range, encodeString, USER_AGENT } from '../../helper/utils.js';
 
