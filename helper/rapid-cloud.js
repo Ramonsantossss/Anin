@@ -8,6 +8,8 @@ const headerOption = { "User-Agent": USER_AGENT, "X-Requested-With": "XMLHttpReq
 const decryptKeyLink = "https://raw.githubusercontent.com/consumet/rapidclown/main/key.txt";
 
 export const scrapeSource = async (serverId) => {
+    let source;
+
     const res = await axios.get(`https://zoro.to//ajax/v2/episode/sources?id=${serverId}`, {
         headers: headerOption
     })
@@ -18,14 +20,20 @@ export const scrapeSource = async (serverId) => {
         headers: headerOption
     });
 
-    const sources = rapidAjax.data.sources;
-    let decryptKey = await axios.get("https://github.com/enimax-anime/key/blob/e6/key.txt");
+    let sources = rapidAjax.data.sources;
+    if (sources[0].file) {
+        source = sources[0]
+    } else {
+        let decryptKey = await axios.get("https://raw.githubusercontent.com/enimax-anime/key/e6/key.txt");
 
-    const $ = load(decryptKey.data);
+        const $ = load(decryptKey.data);
+        console.log(sources)
 
-    const source = CryptoJS.AES.decrypt(sources, $('#LC1').text()).toString(CryptoJS.enc.Utf8);
+        source = JSON.parse(CryptoJS.AES.decrypt(sources, $('#LC1').text()).toString(CryptoJS.enc.Utf8));
+    }
+
     return {
-        sources: JSON.parse(source),
+        sources: source,
         tracks: rapidAjax.data.tracks
     }
 }

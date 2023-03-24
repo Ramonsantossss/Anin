@@ -137,13 +137,12 @@ export const fetchGogoanimeEpisodeSource = async ({ episodeId }) => {
         let sources_bk = [];
 
         let gogoWatchLink;
-        if (episodeId.includes('episode')) {
-            const res = await axios.get(gogoBase2 + episodeId);
-            const $ = load(res.data);
 
-            const gogoWatch = $('#load_anime > div > div > iframe').attr('src');
-            gogoWatchLink = new URL("https:" + gogoWatch);
-        } else gogoWatchLink = new URL(`${goloadStreaming}?id=${episodeId}`);
+        const res = await axios.get(gogoBase2 + episodeId);
+        const $ = load(res.data);
+
+        const gogoWatch = $('div.anime_muti_link > ul > li.vidcdn > a').attr('data-video');
+        gogoWatchLink = new URL('https:' + gogoWatch);
 
         const gogoServerRes = await axios.get(gogoWatchLink.href, headerOption);
         const $$ = load(gogoServerRes.data);

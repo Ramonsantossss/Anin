@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const allanimeBase = 'https://allanime.to/';
-const allanimeApi = allanimeBase + 'allanimeapi';
+const allanimeApi = 'https://api.allanime.to/allanimeapi';
 const allanimeSourceUrl = 'https://allanimenews.com';
 
 import {
@@ -66,6 +66,7 @@ export const fetchSearchAllanime = async ({ keyw, list = [] }) => {
         return list;
 
     } catch (error) {
+        // console.log(error)
         return {
             error: true,
             error_message: error
@@ -121,7 +122,7 @@ export const fetchAllanimeInfo = async ({ animeId, list = {} }) => {
 
 
     } catch (error) {
-        console.log(error)
+        // console.log(error)
         return {
             error: true,
             error_message: error
@@ -131,6 +132,8 @@ export const fetchAllanimeInfo = async ({ animeId, list = {} }) => {
 
 export const fetchAllanimeEpisodeSource = async ({ episodeId, episode = {} }) => {
     try {
+        let sources;
+
         if (!episodeId) return {
             error: true,
             error_message: "No keyword provided"
@@ -144,14 +147,19 @@ export const fetchAllanimeEpisodeSource = async ({ episodeId, episode = {} }) =>
             headers: headerAllanime
         });
 
-        console.log(data.data.episode.sourceUrls)
-        const sourceApiLink = data.data.episode.sourceUrls.sort((a, b) => b.priority - a.priority)[0].sourceUrl;
-        const sources = await axios.get(`${allanimeSourceUrl}${sourceApiLink.replace('clock', 'clock.json')}`);
+        let sourceApiLink = data.data.episode.sourceUrls.sort((a, b) => b.priority - a.priority)[1].sourceUrl;
+        if (sourceApiLink.includes('http')) {
+            sources = Array({ link: sourceApiLink })
+        } else {
+            const response = await axios.get(`${allanimeSourceUrl}${sourceApiLink.replace('clock', 'clock.json')}`);
+            sources = response.data.links
+        }
+
 
         episode = {
             epNum: data.data.episode.episodeString,
             episodeTitle: data.data.episode.episodeInfo.notes?.split("<note-split>")[0],
-            sources: sources.data.links
+            sources
         }
 
         return episode;

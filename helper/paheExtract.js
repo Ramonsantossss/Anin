@@ -10,15 +10,15 @@ export const paheExtractor = async (url) => {
     const $ = load(data)
 
     const kwikRedirectLink = $('a.redirect').attr('href');
-
     const kwikRes = await axios.get(kwikRedirectLink);
     const $$ = load(kwikRes.data);
     cookie = kwikRes.headers['set-cookie']
     let IMPORTANT;
 
-    const scripttext = $$('script').last().prev().prev().prev().text().trim()
-    const replaced = scripttext.replace('return decodeURIComponent(escape', 'IMPORTANT=decodeURIComponent(escape')
-    eval(replaced)
+    const scripttext = $$('script').last().prev().text().trim();
+    const replaced = scripttext.replace('return decodeURIComponent(escape', 'IMPORTANT=decodeURIComponent(escape');
+
+    await eval(replaced)
 
     const kwikDlink = kwikRegex.exec(IMPORTANT)[0]
     const token = tokenRegex.exec(IMPORTANT)[0]

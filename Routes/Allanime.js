@@ -9,7 +9,7 @@ import {
 } from '../scraper/scrape.js';
 
 router.get('/', (req, res) => {
-    res.send({ routes: ['/search?keyw={keyword}', '/info/:animeId', '/watch/:episodeId'], website: 'https://allanime.to/anime' })
+    res.send({ routes: ['/recent-episodes', '/search?keyw={keyword}', '/info/:animeId', '/watch/:episodeId'], website: 'https://allanime.to/anime' })
 })
 
 router.get('/recent-episodes', async (req, res) => {

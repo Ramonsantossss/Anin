@@ -10,7 +10,7 @@ import {
 router.get('/', (req, res) => {
     res.send({
         routes: ['/search?keyw={keyword}', '/info/:animeId', '/watch/:episodeId'],
-        website: 'https://yugen.to/'
+        website: 'https://yugenanime.ro/'
     })
 })
 

@@ -19,7 +19,7 @@ const recentEpisodeParams = {
     extensions: {
         persistedQuery: {
             version: 1,
-            sha256Hash: "9c7a8bc1e095a34f2972699e8105f7aaf9082c6e1ccd56eab99c2f1a971152c6"
+            sha256Hash: "b645a686b1988327795e1203867ed24f27c6338b41e5e3412fc1478a8ab6774e"
         }
     }
 }
@@ -38,7 +38,7 @@ const searchParams = (q) => {
         extensions: {
             persistedQuery: {
                 version: 1,
-                sha256Hash: "9c7a8bc1e095a34f2972699e8105f7aaf9082c6e1ccd56eab99c2f1a971152c6"
+                sha256Hash: "b645a686b1988327795e1203867ed24f27c6338b41e5e3412fc1478a8ab6774e"
             }
         }
     }
@@ -52,7 +52,7 @@ const animeInfoParams = (id) => {
         extensions: {
             persistedQuery: {
                 version: 1,
-                sha256Hash: "f73a8347df0e3e794f8955a18de6e85ac25dfc6b74af8ad613edf87bb446a854"
+                sha256Hash: "d6069285a58a25defe4a217b82140c6da891605c20e510d4683ae73190831ab0"
             }
         }
     }
@@ -68,7 +68,7 @@ const episodeListParams = (id, epNumStart, epNumEnd) => {
         extensions: {
             persistedQuery: {
                 version: 1,
-                sha256Hash: "73d998d209d6d8de325db91ed8f65716dce2a1c5f4df7d304d952fa3f223c9e8"
+                sha256Hash: "31cf94e101217bab1f65be244e37c2a925d6a335ca596972bbc34b4be1b21548"
             }
         }
     }
@@ -84,7 +84,7 @@ const sourceParams = (id, epNum) => {
         extensions: {
             persistedQuery: {
                 version: 1,
-                sha256Hash: "1f0a5d6c9ce6cd3127ee4efd304349345b0737fbf5ec33a60bbc3d18e3bb7c61"
+                sha256Hash: "0ac09728ee9d556967c1a60bbcf55a9f58b4112006d09a258356aeafe1c33889"
             }
         }
     }
