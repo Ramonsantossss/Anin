@@ -1,3 +1,4 @@
+//__path = process.cwd()
 import express from 'express';
 
 const app = express();
@@ -10,6 +11,7 @@ import {
 
 app.use(cors({ origin: "*", credentials: true }));
 app.use(express.json())
+app.set("json spaces",2)
 
 import gogoRoutes from './Routes/Gogoanime.js';
 import animixRoutes from './Routes/Animixplay.js';
@@ -27,7 +29,7 @@ app.use('/yugen', yugenRoutes);
 
 // Routes
 app.get('/', (req, res) => {
-    res.send('Welcome to AnimeAPI!')
+    res.send('TrevoAniApi is a anime streaming and discovery api built using NodeJS and express that scrapes Gogoanime and some other services to return data')
 });
 
 app.get('/schedule', async (req, res) => {
@@ -36,7 +38,7 @@ app.get('/schedule', async (req, res) => {
 })
 
 //Start the web-server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
-    console.log(`API running on http://localhost:${PORT}`)
+    console.log(`API rodando em http://localhost:${PORT}`)
 });
