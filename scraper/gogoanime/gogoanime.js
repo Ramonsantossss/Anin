@@ -27,10 +27,10 @@ export const fetchSearchGogo = async ({ list = [], keyw, page = 1 }) => {
 
         $('div.last_episodes > ul > li').each((index, element) => {
             list.push({
-                animeId: $(element).find('p.name > a').attr('href').split('/')[2],
-                animeTitle: $(element).find('p.name > a').attr('title'),
+                id: $(element).find('p.name > a').attr('href').split('/')[2],
+                category_name: $(element).find('p.name > a').attr('title'),
                 animeUrl: gogoBase + "/" + $(element).find('p.name > a').attr('href'),
-                animeImg: $(element).find('div > a > img').attr('src'),
+                category_image: $(element).find('div > a > img').attr('src'),
                 status: $(element).find('p.released').text().trim()
             });
         });
@@ -52,11 +52,11 @@ export const fetchGogoRecentEpisodes = async ({ list = [], page = 1, type = 1 })
 
         $('div.last_episodes.loaddub > ul > li').each((i, el) => {
             list.push({
-                episodeId: $(el).find('p.name > a').attr('href').split('/')[1],
-                animeTitle: $(el).find('p.name > a').attr('title'),
+                video_id: $(el).find('p.name > a').attr('href').split('/')[1],
+                title: $(el).find('p.name > a').attr('title'),
                 episodeNum: $(el).find('p.episode').text().replace('Episode ', '').trim(),
                 subOrDub: $(el).find('div > a > div').attr('class').replace('type ic-', ''),
-                animeImg: $(el).find('div > a > img').attr('src'),
+                category_image: $(el).find('div > a > img').attr('src'),
                 episodeUrl: gogoBase + "/" + $(el).find('p.name > a').attr('href')
             })
         })
@@ -108,12 +108,13 @@ export const fetchGogoAnimeInfo = async ({ animeId, list = {}, episodes = []}) =
         });
 
         list = {
-            animeTitle: animeTitle.toString(),
+            category_name: animeTitle.toString(),
             type: type.toString(),
-            synopsis: synopsis.toString(),
-            animeImg: animeImg.toString(),
-            releaseDate: releaseDate.toString(),
+            category_description: synopsis.toString(),
+            category_image: animeImg.toString(),
+            count: releaseDate.toString(),
             status: status.toString(),
+            category_genres: "nao definido",
             genres,
             otherNames,
             eptotal: epEnd,
@@ -227,9 +228,7 @@ export const fetchGogoanimeEpisodeSource = async ({ episodeId }) => {
         finalSource.source_bk.map(src => sources_bk.push(src));
 
         return {
-            Referer: gogoWatchLink.href,
-            sources: sources,
-            sources_bk: sources_bk
+            link: sources
         }
     } catch (err) {
         console.log(err);
