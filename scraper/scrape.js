@@ -18,7 +18,8 @@ export {
     fetchGogoAnimeInfo,
     fetchGogoRecentEpisodes,
     fetchGogoanimeEpisodeSource,
-    fetchSearchGogo
+    fetchSearchGogo,
+    episod
 } from './gogoanime/gogoanime.js';
 
 export {
