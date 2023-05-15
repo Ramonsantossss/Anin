@@ -5,13 +5,13 @@ import {
     fetchSearchGogo,
     fetchGogoRecentEpisodes,
     fetchGogoAnimeInfo,
-    fetchGogoanimeEpisodeSource
+    fetchGogoanimeEpisodeSource,
+    episod
 } from "../scraper/scrape.js";
 
 router.get('/', (req, res) => {
     res.send({
-        routes: ['/recent-episodes', '/search?keyw={keyword}', '/info/:animeId', '/watch/:episodeId'],
-        website: 'https://gogoanime.fi'
+        routes: ['/recentes', '/search?keyw={keyword}', '/info/:animeId', '/watch/:episodeId']
     })
 })
 
@@ -29,6 +29,13 @@ router.get('/recent-episodes', async (req, res) => {
 
     const data = await fetchGogoRecentEpisodes({ page, type });
     res.json(data).status(200)
+});
+
+router.get('/epis/:animeId', async (req, res) => {
+    const animeId = req.params.animeId;
+
+    const data = await episod({ animeId });
+    res.json(data).status(200);
 });
 
 router.get('/info/:animeId', async (req, res) => {
