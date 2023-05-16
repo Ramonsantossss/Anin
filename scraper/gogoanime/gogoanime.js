@@ -45,13 +45,14 @@ export const fetchSearchGogo = async ({ list = [], keyw, page = 1 }) => {
     }
 };
 
-export const fetchGogoRecentEpisodes = async ({ list = [], page = 1, type = 1 }) => {
+export const fetchGogoRecentEpisodes = async ({ animeId, list = [], page = 1, type = 1 }) => {
     try {
         const res = await axios.get(gogoajax + `ajax/page-recent-release.html?page=${page}&type=${type}`)
         const $ = load(res.data)
 
-        $('div.last_episodes.loaddub > ul > li').each((i, el) => {
+        $('div.last_episodes.loaddub > ul > li').each((i, el, element) => {
             list.push({
+                //category_id: $(element).find('p.name > a').attr('href').split('/')[1],
                 video_id: $(el).find('p.name > a').attr('href').split('/')[1],
                 title: $(el).find('p.name > a').attr('title'),
                 episodeNum: $(el).find('p.episode').text().replace('Episode ', '').trim(),
@@ -228,7 +229,7 @@ export const fetchGogoanimeEpisodeSource = async ({ episodeId }) => {
         finalSource.source_bk.map(src => sources_bk.push(src));
 
         return {
-            link: sources
+            link: sources[0].file
         }
     } catch (err) {
         console.log(err);
