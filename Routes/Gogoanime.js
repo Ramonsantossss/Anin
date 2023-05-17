@@ -42,14 +42,21 @@ router.get('/info/:animeId', async (req, res) => {
     const animeId = req.params.animeId;
 
     const data = await fetchGogoAnimeInfo({ animeId });
-    res.json(data).status(200);
+    res.json([data]).status(200);
 });
 
 router.get('/watch/:episodeId', async (req, res) => {
     const episodeId = req.params.episodeId;
 
     const data = await fetchGogoanimeEpisodeSource({ episodeId });
-    res.json(data).status(200)
+    res.json([data]).status(200);
+    /*
+//app.get('/video',function(req, res) {
+  const urlDoVideo = data.locationhd; 
+    //res.json(data).status(200);
+  res.send(`<video controls> <source src="${urlDoVideo}" type="video/mp4"></video>`); 
+//});
+*/
 });
 
 export default router;
