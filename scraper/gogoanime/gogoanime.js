@@ -164,13 +164,14 @@ export const episod = async ({ animeId, episodes = {}}) => {
 
         $$("#episode_related > li").each((i, el) => {
             episodes.push({
-            category_id: animeId,
             video_id: $(el).find("a").attr("href").split('/')[1],
-            epNum: $(el).find(`div.name`).text().replace('EP ', ''),
+            category_id: animeId,
             title: $('div.anime_info_body_bg > h1').text(),
+            epNum: $(el).find(`div.name`).text().replace('EP ', ''),
             episodeUrl: gogoBase + $(el).find(`a`).attr('href').trim()
             });
         });
+        
 
         list = {
             animeTitle: animeTitle.toString(),
@@ -197,7 +198,7 @@ export const episod = async ({ animeId, episodes = {}}) => {
 
 
 
-export const fetchGogoanimeEpisodeSource = async ({ episodeId }) => {
+export const fetchGogoanimeEpisodeSource = async ({ animeId, episodeId, list = [] }) => {
     try {
         let sources = [];
         let sources_bk = [];
@@ -228,9 +229,18 @@ export const fetchGogoanimeEpisodeSource = async ({ episodeId }) => {
         finalSource.source.map(src => sources.push(src));
         finalSource.source_bk.map(src => sources_bk.push(src));
 
-        return {
-            link: sources[0].file
+        list = {
+            video_id: episodeId,
+            category_id: "aaaa",
+            title: "anime",
+            location: sources[0].file,
+            locationhd: sources[0].file,
+            locationsd: sources[0].file,
         }
+
+        
+
+        return list 
     } catch (err) {
         console.log(err);
         return {
