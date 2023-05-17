@@ -232,7 +232,7 @@ export const fetchGogoanimeEpisodeSource = async ({ animeId, episodeId, list = [
         list = {
             video_id: episodeId,
             category_id: "aaaa",
-            title: "anime",
+            title: episodeId,
             location: sources[0].file,
             locationhd: sources[0].file,
             locationsd: sources[0].file,
