@@ -45,6 +45,15 @@ router.get('/info/:animeId', async (req, res) => {
     res.json([data]).status(200);
 });
 
+
+router.get('/popular', async (req, res) => {
+fetch(encodeURI("https://animaster.onrender.com/api/popular/1"))
+     .then(response => response.json())
+     .then(data => {
+     res.json(data.results).status(200);
+     })
+})
+
 router.get('/watch/:episodeId', async (req, res) => {
     const episodeId = req.params.episodeId;
 
